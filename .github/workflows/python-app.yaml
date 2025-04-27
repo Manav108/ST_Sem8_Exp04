@@ -26,4 +26,4 @@ jobs:
 
     - name: Run tests
       run: |
-        pytest tests --maxfail=1 --disable-warnings -q  # Run tests with a max failure of 1 and no warnings
+        pytest --maxfail=1 --disable-warnings -q  # Run tests with a max failure of 1 and no warnings
