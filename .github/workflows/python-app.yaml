@@ -1,0 +1,29 @@
+name: Python application
+
+# Trigger the workflow on push to any branch (could change this to a specific branch like `main`)
+on:
+  push:
+    branches:
+      - main  # You can change this to 'master' or any branch you're working on.
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Run the tests on an Ubuntu-based environment
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4  # This step checks out your code so actions can run tests on it
+
+    - name: Set up Python
+      uses: actions/setup-python@v5  # This step sets up Python environment
+      with:
+        python-version: 3.11  # You can specify your version (3.11 is current)
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest pytest-cov  # Install pytest and pytest-cov for coverage reports
+
+    - name: Run tests
+      run: |
+        pytest --maxfail=1 --disable-warnings -q  # Run tests with a max failure of 1 and no warnings
