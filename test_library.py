@@ -15,6 +15,13 @@ def test_add_book_success():
     lib.add_book("New Book", 4)
     assert lib.books["New Book"] == 4
 
+def test_add_book_fail():
+    lib = Library()
+    lib.add_book("The Great Gatsby", 3)
+    # Intentionally making the test fail by adding a wrong assertion
+    assert lib.available_books() == {"The Great Gatsby": 5}  # This will fail because we added 3 copies, not 5
+
+
 def test_add_duplicate_book(library):
     with pytest.raises(BookAlreadyExists):
         library.add_book("1984", 1)
